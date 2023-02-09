@@ -1,0 +1,25 @@
+mat-card{
+    
+    min-width: 30vh;
+    max-width: 70vh;
+    margin:auto;
+    margin-top: 10px;
+    // border:1px solid blue;
+}
+mat-card-header{
+    background: rgb(98, 105, 214);
+    display: flex;
+    justify-content: center;
+    font-size: medium;
+    font-weight: 400;
+    color:aliceblue;
+   margin-bottom: 10px;
+    // border: 1px solid blue;
+}
+mat-form-field{
+    width: 100%;
+}
+
+button{
+    margin: auto;
+}

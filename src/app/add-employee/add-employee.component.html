@@ -1,0 +1,119 @@
+<mat-card>
+  <mat-card-header>Add employee details</mat-card-header>
+  <form [formGroup]="employeeForm" (ngSubmit)="saveEmployeeForm()">
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="Enter Employee Name"
+          formControlName="name"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile number</mat-label>
+        <input
+          matInput
+          placeholder="Enter Mobile no"
+          formControlName="mobile"
+        />
+        <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Employee Email</mat-label>
+        <input
+          matInput
+          placeholder="Enter Employee EmailId"
+          formControlName="email"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Select Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="male">Male</mat-option>
+          <mat-option value="female">Female</mat-option>
+          <mat-option value="other">Other</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div formArrayName="addressArray"></div>
+      <mat-card>
+        <div>
+          <button mat-button color="primary" (click)="addAddress()">
+            Add Address
+          </button>
+        </div>
+        <mat-card-header>Address</mat-card-header>
+        <ng-container
+          *ngFor="let addressForm of addressForms.controls; let i = index"
+        >
+          <div [formGroup]="addressGroupForm">
+            <mat-card-content>
+              <mat-form-field appearance="fill">
+                <mat-label>Address Line 1</mat-label>
+                <input
+                  matInput
+                  placeholder="Enter Employee Address"
+                  formControlName="addLine1"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Address Line 2</mat-label>
+                <input
+                  matInput
+                  placeholder="Enter Employee Address"
+                  formControlName="addLine2"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>District</mat-label>
+                <input
+                  matInput
+                  placeholder="Enter Employee District"
+                  formControlName="district"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>State</mat-label>
+                <input
+                  matInput
+                  placeholder="Enter Employee State"
+                  formControlName="state"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>PIN Code</mat-label>
+                <input
+                  matInput
+                  placeholder="Enter Area PIN Code"
+                  formControlName="pinCode"
+                />
+              </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+              <button
+                mat-button
+                color="warn"
+                (click)="removeAddressFormGroup(i)"
+              >
+                Delete Address
+              </button>
+            </mat-card-actions>
+          </div>
+        </ng-container>
+      </mat-card>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button type="submit" mat-raised-button color="primary">
+        Add employee
+      </button>
+    </mat-card-actions>
+  </form>
+
+  <mat-card-footer></mat-card-footer>
+</mat-card>
+<div>
+  {{ formPreview }}
+</div>
