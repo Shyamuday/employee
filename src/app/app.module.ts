@@ -14,8 +14,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { FormArrayComponent } from './form-array/form-array.component';
+import { HomeComponent } from './home/home.component';
+import { SkillsFormComponent } from './skills-form/skills-form.component';
+import { AddEmployee2ndMethodComponent } from './add-employee2nd-method/add-employee2nd-method.component';
+import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
-  declarations: [AppComponent, AddEmployeeComponent],
+  declarations: [
+    AppComponent,
+    AddEmployeeComponent,
+    FormArrayComponent,
+    HomeComponent,
+    SkillsFormComponent,
+    AddEmployee2ndMethodComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     ReactiveFormsModule,
     FormsModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

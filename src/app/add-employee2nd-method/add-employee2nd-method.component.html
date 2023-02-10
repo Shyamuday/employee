@@ -43,7 +43,8 @@
           <ng-container
             *ngFor="let addressForm of addressForms.controls; let i = index"
           >
-            <div [formGroup]="addressGroupForm">
+            <div [formGroupName]="i">
+              {{ i }}
               <mat-card-content>
                 <mat-form-field appearance="fill">
                   <mat-label>Address Line 1</mat-label>
@@ -99,14 +100,12 @@
           </ng-container>
         </mat-card>
       </div>
-
-      <div>
-        <button mat-button color="primary" (click)="addAddress()">
-          Add Address
-        </button>
-      </div>
     </mat-card-content>
-
+    <div>
+      <button mat-button color="primary" (click)="addAddress()">
+        Add Address
+      </button>
+    </div>
     <mat-card-actions>
       <button
         type="submit"

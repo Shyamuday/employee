@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-employee',
-  templateUrl: './add-employee.component.html',
-  styleUrls: ['./add-employee.component.scss'],
+  selector: 'app-add-employee2nd-method',
+  templateUrl: './add-employee2nd-method.component.html',
+  styleUrls: ['./add-employee2nd-method.component.scss'],
 })
-export class AddEmployeeComponent {
+export class AddEmployee2ndMethodComponent {
   addressHeader = false;
-
   formPreview = '';
   employeeForm = this.fb.group({
     name: ['', Validators.required],
@@ -37,25 +36,28 @@ export class AddEmployeeComponent {
   // get email() {
   //   return this.employeeForm.get('email');
   // }
-  get addressForms() {
+  get addressForms(): FormArray {
     return this.employeeForm.get('addressArray') as FormArray;
   }
 
   saveEmployeeForm() {
-    this.formPreview = JSON.stringify(this.employeeForm.value);
+    // this.formPreview = JSON.stringify(this.employeeForm.value);
+    console.log(this.employeeForm.value);
   }
   addressGroupForm!: FormGroup;
 
-  addAddress() {
-    this.addressHeader = true;
-    this.addressGroupForm = this.fb.group({
+  newAddress(): FormGroup {
+    return this.fb.group({
       addLine1: ['', Validators.required],
       addLine2: ['', Validators.required],
       district: ['', Validators.required],
       state: ['', Validators.required],
       pinCode: ['', Validators.required],
     });
-    this.addressForms.push(this.addressGroupForm);
+  }
+
+  addAddress() {
+    this.addressForms.push(this.newAddress());
   }
 
   get addLine1() {
@@ -74,7 +76,7 @@ export class AddEmployeeComponent {
     return this.addressGroupForm.get('pinCode');
   }
 
-  removeAddressFormGroup(index: number) {
-    this.addressForms.removeAt(index);
+  removeAddressFormGroup(i: number) {
+    this.addressForms.removeAt(i);
   }
 }
