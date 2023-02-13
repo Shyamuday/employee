@@ -44,7 +44,7 @@ export class AddEmployee2ndMethodComponent {
 
   saveEmployeeForm() {
     // this.formPreview = JSON.stringify(this.employeeForm.value);
-    console.log(this.employeeForm);
+    console.log(this.employeeForm.value);
   }
 
   newAddress() {
