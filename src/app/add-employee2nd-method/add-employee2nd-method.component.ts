@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-employee2nd-method',
@@ -8,7 +8,6 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddEmployee2ndMethodComponent {
   addressHeader = false;
-  formPreview = '';
   employeeForm = this.fb.group({
     name: ['', Validators.required],
     mobile: [
@@ -22,58 +21,60 @@ export class AddEmployee2ndMethodComponent {
     ],
     gender: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    addressArray: this.fb.array([], Validators.required),
+    addressArray: this.fb.array([]),
   });
 
   constructor(private fb: FormBuilder) {}
 
-  // get name() {
-  //   return this.employeeForm.get('name');
-  // }
-  // get mobile() {
-  //   return this.employeeForm.get('mobile');
-  // }
-  // get email() {
-  //   return this.employeeForm.get('email');
-  // }
-  get addressForms(): FormArray {
+  get name() {
+    return this.employeeForm.get('name');
+  }
+  get mobile() {
+    return this.employeeForm.get('mobile');
+  }
+  get email() {
+    return this.employeeForm.get('email');
+  }
+  get gender() {
+    return this.employeeForm.get('gender');
+  }
+  get addressForms() {
     return this.employeeForm.get('addressArray') as FormArray;
   }
 
   saveEmployeeForm() {
     // this.formPreview = JSON.stringify(this.employeeForm.value);
-    console.log(this.employeeForm.value);
+    console.log(this.employeeForm);
   }
-  addressGroupForm!: FormGroup;
 
-  newAddress(): FormGroup {
+  newAddress() {
     return this.fb.group({
       addLine1: ['', Validators.required],
-      addLine2: ['', Validators.required],
+      addLine2: [''],
       district: ['', Validators.required],
       state: ['', Validators.required],
       pinCode: ['', Validators.required],
     });
   }
 
-  addAddress() {
+  onAddAddress() {
     this.addressForms.push(this.newAddress());
   }
 
-  get addLine1() {
-    return this.addressGroupForm.get('addLine1');
+  addLine1(i: number) {
+    return this.addressForms.at(i).get('addLine1');
   }
-  get addLine2() {
-    return this.addressGroupForm.get('addLine2');
+  addLine2(i: number) {
+    return this.addressForms.at(i).get('addLine2');
   }
-  get district() {
-    return this.addressGroupForm.get('district');
+  district(i: number) {
+    return this.addressForms.at(i).get('district');
   }
-  get state() {
-    return this.addressGroupForm.get('state');
+  state(i: number) {
+    return this.addressForms.at(i).get('state');
   }
-  get pinCode() {
-    return this.addressGroupForm.get('pinCode');
+  pinCode(i: number) {
+    return this.addressForms.at(i).get('pinCode');
   }
 
   removeAddressFormGroup(i: number) {

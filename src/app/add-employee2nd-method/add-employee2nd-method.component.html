@@ -4,31 +4,30 @@
     <mat-card-content>
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input
-          matInput
-          placeholder="Enter Employee Name"
-          formControlName="name"
-        />
+        <input matInput placeholder="Enter Employee Name" formControlName="name" />
       </mat-form-field>
+      <div *ngIf="name?.invalid && (name?.touched || name?.dirty)">
+        <mat-error *ngIf="name?.errors?.['required']">Name is required</mat-error>
+        <mat-error *ngIf="name?.errors?.['minLength']"></mat-error>
+      </div>
       <mat-form-field appearance="outline">
         <mat-label>Mobile number</mat-label>
-        <input
-          matInput
-          placeholder="Enter Mobile no"
-          formControlName="mobile"
-        />
+        <input matInput placeholder="Enter Mobile no" formControlName="mobile" />
         <mat-icon matSuffix>phone</mat-icon>
       </mat-form-field>
-
+      <div *ngIf="mobile?.invalid && (mobile?.touched || mobile?.dirty)">
+        <mat-error *ngIf="mobile?.errors?.['required']">mobile is required</mat-error>
+        <mat-error *ngIf="mobile?.errors?.['minLength']">Please enter 10 Digit </mat-error>
+        <mat-error *ngIf="mobile?.errors?.['maxLength']">Enter Only 10 digit</mat-error>
+      </div>
       <mat-form-field appearance="outline">
         <mat-label>Employee Email</mat-label>
-        <input
-          matInput
-          placeholder="Enter Employee EmailId"
-          formControlName="email"
-        />
+        <input matInput placeholder="Enter Employee EmailId" formControlName="email" />
       </mat-form-field>
-
+      <div *ngIf="email?.invalid && (email?.touched || email?.dirty)">
+        <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
+        <mat-error *ngIf="email?.errors?.['email']">Enter valid email</mat-error>
+      </div>
       <mat-form-field appearance="outline">
         <mat-label>Select Gender</mat-label>
         <mat-select formControlName="gender">
@@ -37,62 +36,58 @@
           <mat-option value="other">Other</mat-option>
         </mat-select>
       </mat-form-field>
+      <div *ngIf="gender?.invalid && (gender?.touched || gender?.dirty)">
+        <mat-error *ngIf="gender?.errors?.['required']">Please select gender </mat-error>
+      </div>
       <div formArrayName="addressArray">
         <mat-card>
           <mat-card-header *ngIf="addressHeader">Address</mat-card-header>
-          <ng-container
-            *ngFor="let addressForm of addressForms.controls; let i = index"
-          >
+          <ng-container *ngFor="let addressForm of addressForms.controls; let i = index">
             <div [formGroupName]="i">
               {{ i }}
               <mat-card-content>
                 <mat-form-field appearance="fill">
-                  <mat-label>Address Line 1</mat-label>
-                  <input
-                    matInput
-                    placeholder="Enter Employee Address"
-                    formControlName="addLine1"
-                  />
+                  <mat-label [attr.for]="'empAddLine1' + i">Address Line 1</mat-label>
+                  <input matInput placeholder="Enter Employee Address" [id]="'empAddLine1' + i"
+                    formControlName="addLine1" />
+                </mat-form-field>
+                <div *ngIf="addLine1(i)?.invalid && (addLine1(i)?.touched || addLine1(i)?.dirty)">
+                  <mat-error *ngIf="addLine1(i)?.errors?.['required']">'Address field is required.</mat-error>
+                </div>
+                <mat-form-field appearance="fill">
+                  <mat-label [attr.for]="'empAdd2' + i">Address Line 2</mat-label>
+                  <input matInput placeholder="Enter Employee Address" formControlName="addLine2"
+                    [id]="'empAdd2' + i" />
                 </mat-form-field>
                 <mat-form-field appearance="fill">
-                  <mat-label>Address Line 2</mat-label>
-                  <input
-                    matInput
-                    placeholder="Enter Employee Address"
-                    formControlName="addLine2"
-                  />
+                  <mat-label [attr.for]="'empDist' + i">District</mat-label>
+                  <input matInput placeholder="Enter Employee District" formControlName="district"
+                    [id]="'empDist' + i" />
                 </mat-form-field>
+                <div *ngIf="district(i)?.invalid && (district(i)?.touched || district(i)?.dirty)">
+                  <mat-error *ngIf="district(i)?.errors?.['required']">'District is required.</mat-error>
+                </div>
                 <mat-form-field appearance="fill">
-                  <mat-label>District</mat-label>
-                  <input
-                    matInput
-                    placeholder="Enter Employee District"
-                    formControlName="district"
-                  />
+                  <mat-label [attr.for]="'empState' + i">State</mat-label>
+                  <input matInput placeholder="Enter Employee State" formControlName="state" [id]="'empState' + i" />
                 </mat-form-field>
+                <div *ngIf="state(i)?.invalid && (state(i)?.touched|| state(i)?.dirty)">
+                  <mat-error *ngIf="state(i)?.errors?.['required']">
+                    State is required
+                  </mat-error>
+                </div>
                 <mat-form-field appearance="fill">
-                  <mat-label>State</mat-label>
-                  <input
-                    matInput
-                    placeholder="Enter Employee State"
-                    formControlName="state"
-                  />
+                  <mat-label [attr.for]="'empPin' + i">PIN Code</mat-label>
+                  <input matInput placeholder="Enter Area PIN Code" formControlName="pinCode" [id]="'empPin' + i" />
                 </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>PIN Code</mat-label>
-                  <input
-                    matInput
-                    placeholder="Enter Area PIN Code"
-                    formControlName="pinCode"
-                  />
-                </mat-form-field>
+                <div *ngIf="pinCode(i)?.invalid && (pinCode(i)?.touched || pinCode(i)?.dirty)">
+                  <mat-error *ngIf="pinCode(i)?.errors?.['required']">
+                    PIN Code is required
+                  </mat-error>
+                </div>
               </mat-card-content>
               <mat-card-actions>
-                <button
-                  mat-button
-                  color="warn"
-                  (click)="removeAddressFormGroup(i)"
-                >
+                <button mat-button color="warn" (click)="removeAddressFormGroup(i)">
                   Delete Address
                 </button>
               </mat-card-actions>
@@ -102,17 +97,12 @@
       </div>
     </mat-card-content>
     <div>
-      <button mat-button color="primary" (click)="addAddress()">
+      <button type="button" mat-button color="primary" (click)=" onAddAddress()">
         Add Address
       </button>
     </div>
     <mat-card-actions>
-      <button
-        type="submit"
-        mat-raised-button
-        color="primary"
-        [disabled]="!employeeForm.valid"
-      >
+      <button type="submit" mat-raised-button color="primary">
         Add employee
       </button>
     </mat-card-actions>
@@ -120,6 +110,5 @@
 
   <mat-card-footer></mat-card-footer>
 </mat-card>
-<div>
-  {{ formPreview }}
-</div>
+
+<!-- [disabled]="!employeeForm.valid" -->

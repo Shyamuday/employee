@@ -1,3 +1,19 @@
-mat-form-field{
-    margin: 10px;
+.mainForm{
+    display: flex;
+    flex-direction: column;
 }
+
+        // mat-card-content{
+        //     display: flex;
+        //     flex-direction: row;
+           
+        // }
+
+                .errorMsg{
+                    height: 100px;
+                    padding: 10px;
+            display: flex;
+            flex-direction: column-reverse;
+            // justify-content: center;
+            align-items: start;
+        }
