@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Employee } from '../employee.model';
+import { EmployeesService } from '../services/employees.service';
+import { StateData } from './State-list';
 
 @Component({
   selector: 'app-add-employee2nd-method',
@@ -7,7 +11,9 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./add-employee2nd-method.component.scss'],
 })
 export class AddEmployee2ndMethodComponent {
+  employeeData: Employee = {} as Employee;
   addressHeader = false;
+  stateList = StateData;
   employeeForm = this.fb.group({
     name: ['', Validators.required],
     mobile: [
@@ -24,8 +30,15 @@ export class AddEmployee2ndMethodComponent {
     addressArray: this.fb.array([]),
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private employeeService: EmployeesService
+  ) {}
 
+  isDisabled(option: any) {
+    return option.selected;
+  }
   get name() {
     return this.employeeForm.get('name');
   }
@@ -40,11 +53,6 @@ export class AddEmployee2ndMethodComponent {
   }
   get addressForms() {
     return this.employeeForm.get('addressArray') as FormArray;
-  }
-
-  saveEmployeeForm() {
-    // this.formPreview = JSON.stringify(this.employeeForm.value);
-    console.log(this.employeeForm.value);
   }
 
   newAddress() {
@@ -77,7 +85,31 @@ export class AddEmployee2ndMethodComponent {
     return this.addressForms.at(i).get('pinCode');
   }
 
+  saveEmployeeForm() {
+    const data = this.employeeForm.value;
+
+    this.employeeService.postEmployeeDetails(data).subscribe({
+      next: (res) => {
+        alert('Employee details added successfully');
+        this.employeeForm.reset();
+        this.router.navigate(['/', 'displayEmployees']);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+
+    // this.formPreview = JSON.stringify(this.employeeForm.value);
+    // console.log(this.employeeForm);
+  }
+
   removeAddressFormGroup(i: number) {
     this.addressForms.removeAt(i);
+  }
+
+  optionValidity() {
+    const selectedState = this.employeeForm.valueChanges.subscribe(
+      (value) => {}
+    );
   }
 }

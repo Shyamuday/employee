@@ -18,6 +18,9 @@ import { HomeComponent } from './home/home.component';
 import { SkillsFormComponent } from './skills-form/skills-form.component';
 import { AddEmployee2ndMethodComponent } from './add-employee2nd-method/add-employee2nd-method.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { HttpClientModule } from '@angular/common/http';
+import { DisplayEmployeeComponent } from './display-employee/display-employee.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     HomeComponent,
     SkillsFormComponent,
     AddEmployee2ndMethodComponent,
+    DisplayEmployeeComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     ReactiveFormsModule,
     FormsModule,
     MatTabsModule,
+    HttpClientModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

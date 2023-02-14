@@ -1,0 +1,77 @@
+{
+  "employees": [
+    {
+      "name": "Pawan",
+      "mobile": 8789654578,
+      "gender": "male",
+      "email": "pavan@tradexa.in",
+      "addressArray": [
+        {
+          "addLine1": "Kharadi",
+          "addLine2": "Lane no 1",
+          "district": "Pune",
+          "state": "Maharashtra",
+          "pinCode": 897456
+        }
+      ],
+      "id": 15
+    },
+    {
+      "name": "Rohit",
+      "mobile": 7898457856,
+      "gender": "male",
+      "email": "Rok98@gmail.com",
+      "addressArray": [
+        {
+          "addLine1": "Raigira",
+          "addLine2": "House no 34",
+          "district": "Raigarh",
+          "state": "Haryana",
+          "pinCode": 784578
+        }
+      ],
+      "id": 16
+    },
+    {
+      "name": "Amit ",
+      "mobile": 7874756521,
+      "gender": "male",
+      "email": "amit21@gmail.com",
+      "addressArray": [
+        {
+          "addLine1": "Piska More",
+          "addLine2": "House no 54",
+          "district": "Ranchi",
+          "state": "Jharkhand",
+          "pinCode": 834001
+        }
+      ],
+      "id": 17
+    },
+    {
+      "name": "Shyam Kumar",
+      "mobile": 9304471227,
+      "gender": "male",
+      "email": "shyam@tradexa.in",
+      "addressArray": [],
+      "id": 18
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "type"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "type"
+  }
+}

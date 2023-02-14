@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { AddEmployee2ndMethodComponent } from './add-employee2nd-method/add-employee2nd-method.component';
+import { DisplayEmployeeComponent } from './display-employee/display-employee.component';
 import { FormArrayComponent } from './form-array/form-array.component';
 import { HomeComponent } from './home/home.component';
 import { SkillsFormComponent } from './skills-form/skills-form.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'skillsForm', component: SkillsFormComponent },
     ],
   },
+  { path: 'displayEmployees', component: DisplayEmployeeComponent },
 ];
 
 @NgModule({

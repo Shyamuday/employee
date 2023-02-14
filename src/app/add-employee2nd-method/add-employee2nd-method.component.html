@@ -1,13 +1,9 @@
-<mat-card>
-
+<mat-card class="matCardContainer">
   <mat-card-header>Add employee details</mat-card-header>
-
   <form [formGroup]="employeeForm" (ngSubmit)="saveEmployeeForm()">
-
     <mat-card-content class="parentForm">
-
       <div class="form1">
-        <div>
+        <div class="parentFormContainer">
           <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
             <input matInput placeholder="Enter Employee Name" formControlName="name" />
@@ -17,7 +13,7 @@
             <mat-error *ngIf="name?.errors?.['minLength']"></mat-error>
           </div>
         </div>
-        <div>
+        <div class="parentFormContainer">
           <mat-form-field appearance="outline">
             <mat-label>Mobile number</mat-label>
             <input type="number" matInput placeholder="Enter Mobile no" formControlName="mobile" />
@@ -29,7 +25,7 @@
             <mat-error *ngIf="mobile?.errors?.['maxLength']">Enter Only 10 digit</mat-error>
           </div>
         </div>
-        <div>
+        <div class="parentFormContainer">
           <mat-form-field appearance="outline">
             <mat-label>Employee Email</mat-label>
             <input matInput placeholder="Enter Employee EmailId" formControlName="email" />
@@ -39,7 +35,7 @@
             <mat-error *ngIf="email?.errors?.['email']">Enter valid email</mat-error>
           </div>
         </div>
-        <div>
+        <div class="parentFormContainer">
           <mat-form-field appearance="outline">
             <mat-label>Select Gender</mat-label>
             <mat-select formControlName="gender">
@@ -59,12 +55,15 @@
             <mat-card-header *ngIf="addressHeader">Address</mat-card-header>
             <ng-container *ngFor="let addressForm of addressForms.controls; let i = index">
               <div [formGroupName]="i">
-                {{ i }}
+
                 <div>
-                  <mat-card-content>
+                  <mat-card-content class="cardHeight">
                     <div class="childForm">
-                      <div>
-                        <mat-form-field appearance="fill">
+                      <div class="childFormContainer">
+                        {{ i + 1}}
+                      </div>
+                      <div class="childFormContainer">
+                        <mat-form-field appearance="outline">
                           <mat-label [attr.for]="'empAddLine1' + i">Address Line 1</mat-label>
                           <input matInput placeholder="Enter Employee Address" [id]="'empAddLine1' + i"
                             formControlName="addLine1" />
@@ -74,15 +73,15 @@
                             field</mat-error>
                         </div>
                       </div>
-                      <div>
-                        <mat-form-field appearance="fill">
+                      <div class="childFormContainer">
+                        <mat-form-field appearance="outline">
                           <mat-label [attr.for]="'empAdd2' + i">Address Line 2</mat-label>
                           <input matInput placeholder="Enter Employee Address" formControlName="addLine2"
                             [id]="'empAdd2' + i" />
                         </mat-form-field>
                       </div>
-                      <div>
-                        <mat-form-field appearance="fill">
+                      <div class="childFormContainer">
+                        <mat-form-field appearance="outline">
                           <mat-label [attr.for]="'empDist' + i">District</mat-label>
                           <input matInput placeholder="Enter Employee District" formControlName="district"
                             [id]="'empDist' + i" />
@@ -92,11 +91,15 @@
                             field.</mat-error>
                         </div>
                       </div>
-                      <div>
-                        <mat-form-field appearance="fill">
-                          <mat-label [attr.for]="'empState' + i">State</mat-label>
-                          <input matInput placeholder="Enter Employee State" formControlName="state"
-                            [id]="'empState' + i" />
+                      <div class="childFormContainer">
+                        <mat-form-field appearance="outline">
+                          <mat-label [attr.for]="'empState' + i" [id]="'empState' + i">Select State</mat-label>
+                          <ng-container>
+                            <mat-select formControlName="state">
+                              <mat-option *ngFor="let option of stateList ; let i=index" [disabled]=""
+                                value="{{option}}">{{option}}</mat-option>
+                            </mat-select>
+                          </ng-container>
                         </mat-form-field>
                         <div *ngIf="state(i)?.invalid && (state(i)?.touched|| state(i)?.dirty)">
                           <mat-error *ngIf="state(i)?.errors?.['required']">
@@ -104,8 +107,8 @@
                           </mat-error>
                         </div>
                       </div>
-                      <div>
-                        <mat-form-field appearance="fill">
+                      <div class="childFormContainer">
+                        <mat-form-field appearance="outline">
                           <mat-label [attr.for]="'empPin' + i">PIN Code</mat-label>
                           <input type="number" matInput placeholder="Enter Area PIN Code" formControlName="pinCode"
                             [id]="'empPin' + i" />
@@ -116,37 +119,36 @@
                           </mat-error>
                         </div>
                       </div>
+                      <div class="childFormContainer">
+                        <button mat-button color="warn" (click)="removeAddressFormGroup(i)">
+                          <mat-icon>delete_forever</mat-icon>
+                        </button>
+                      </div>
                     </div>
                   </mat-card-content>
                 </div>
-                <mat-card-actions>
-                  <button mat-button color="warn" (click)="removeAddressFormGroup(i)">
-                    Delete Address
-                  </button>
-                </mat-card-actions>
+
               </div>
             </ng-container>
           </mat-card>
         </div>
       </div>
-
     </mat-card-content>
+    <div class="btnContainer">
+      <div>
+        <button type="button" mat-button color="primary" (click)=" onAddAddress()">
+          Add Address
+        </button>
+      </div>
+      <div class="empBtn">
+
+        <button type="submit" [disabled]="!employeeForm.valid" mat-raised-button color="primary">
+          Add employee
+        </button>
+      </div>
 
 
-    <div>
-      <button type="button" mat-button color="primary" (click)=" onAddAddress()">
-        Add Address
-      </button>
     </div>
-    <mat-card-actions>
 
-      <button type="submit" [disabled]="!employeeForm.valid" mat-raised-button color="primary">
-        Add employee
-      </button>
-    </mat-card-actions>
   </form>
-
-
-
-  <mat-card-footer></mat-card-footer>
 </mat-card>

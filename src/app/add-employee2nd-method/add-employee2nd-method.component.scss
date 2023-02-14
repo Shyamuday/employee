@@ -1,26 +1,54 @@
-.mainForm{
-    display: flex;
-    flex-direction: column;
+mat-card{
+    box-shadow:none;
 }
-// .parentFormContainer{
-//     display: flex;
-//     flex-direction: column;
-// }
-.form1{
+
+.matCardContainer {
+    padding-top: 20px;
     display: flex;
-   
+    justify-content: center;
+    align-items: center;
 
 }
-.childForm{
-    display: flex;
-   
+mat-card-header {
+    background-color: #a71c3e;
+    color: aliceblue;
+    font-size: 24px;
+    text-align: center;
+    padding: 16px;
+    border-radius: 20px;
 }
- mat-error{
-        // height: 100px;
-        padding: 0px;
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: center;
-        align-items: start;
-                    
-        }
+
+mat-form-field {
+    flex-direction: row;
+}
+
+.mainForm {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.parentFormContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.form1 {
+    display: flex;
+    justify-content: center;
+}
+
+.childForm {
+    display: flex;
+}
+
+.childFormContainer {
+    margin: 10px;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: space-evenly;
+
+}
