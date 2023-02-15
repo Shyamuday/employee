@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Employee } from '../employee.model';
@@ -34,11 +34,9 @@ export class AddEmployee2ndMethodComponent {
     private router: Router,
     private fb: FormBuilder,
     private employeeService: EmployeesService
-  ) {}
+  ) { }
 
-  isDisabled(option: any) {
-    return option.selected;
-  }
+
   get name() {
     return this.employeeForm.get('name');
   }
@@ -67,6 +65,8 @@ export class AddEmployee2ndMethodComponent {
 
   onAddAddress() {
     this.addressForms.push(this.newAddress());
+
+    // console.log(this.addressForms)
   }
 
   addLine1(i: number) {
@@ -90,6 +90,7 @@ export class AddEmployee2ndMethodComponent {
 
     this.employeeService.postEmployeeDetails(data).subscribe({
       next: (res) => {
+        console.log(res)
         alert('Employee details added successfully');
         this.employeeForm.reset();
         this.router.navigate(['/', 'displayEmployees']);
@@ -98,18 +99,16 @@ export class AddEmployee2ndMethodComponent {
         console.log(err);
       },
     });
-
-    // this.formPreview = JSON.stringify(this.employeeForm.value);
-    // console.log(this.employeeForm);
   }
 
   removeAddressFormGroup(i: number) {
     this.addressForms.removeAt(i);
   }
 
-  optionValidity() {
-    const selectedState = this.employeeForm.valueChanges.subscribe(
-      (value) => {}
-    );
-  }
+  // isStateDisabled(option: string) {
+  //   console.count(option)
+  //   return this.addressForms.value.find((v: any) => v.state === option)
+
+  // }
 }
+

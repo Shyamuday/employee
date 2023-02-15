@@ -21,7 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { HttpClientModule } from '@angular/common/http';
 import { DisplayEmployeeComponent } from './display-employee/display-employee.component';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,8 +49,9 @@ import { MatTableModule } from '@angular/material/table';
     MatTabsModule,
     HttpClientModule,
     MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
