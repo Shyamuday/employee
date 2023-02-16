@@ -1,0 +1,23 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <h1>Employee Detail </h1>
+        </mat-card-header>
+        <mat-card-content>
+            <h2>Name:- {{employee.name}}</h2>
+            <h3>Email:- {{employee.email}}</h3>
+            <h3>Mobile no :-{{employee.mobile}}</h3>
+            <h3>Gender :- {{employee.gender}}</h3>
+            <h1>Address Details</h1>
+
+            <ng-container *ngFor="let addressData of employee.addressArray">
+                <h3>Line1 :- {{addressData.addLine1}}</h3>
+                <h3>Line2 :- {{addressData.addLine2}}</h3>
+                <h3>District :- {{addressData.district}}</h3>
+                <h3>State :- {{addressData.state}}</h3>
+                <h3>PIN :- {{addressData.pinCode}}</h3>
+            </ng-container>
+            <h3></h3>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,21 @@
+table,
+th,
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+mat-card{
+    display: flex;
+    justify-content: center;
+align-items: center;
+    margin-top: 20px;
+    border: 1px blue solid;
+    border-radius: 20px;
+    width: 50%;
+    text-decoration: solid;
+}
+mat-card-header{
+background-color: bisque;
+color:brown
+}

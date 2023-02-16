@@ -13,7 +13,7 @@ import { EmployeesService } from '../services/employees.service';
 export class DisplayEmployeeComponent implements OnInit, AfterViewInit {
 
   displayEmployeeData: MatTableDataSource<Employee[]> = new MatTableDataSource()
-  displayedColumns: string[] = ['name', 'mobile', 'email', 'gender'];
+  displayedColumns: string[] = ['name', 'mobile', 'email', 'gender', 'showmore'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private employeeService: EmployeesService) { }

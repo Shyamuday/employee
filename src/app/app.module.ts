@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DisplayEmployeeComponent } from './display-employee/display-employee.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     SkillsFormComponent,
     AddEmployee2ndMethodComponent,
     DisplayEmployeeComponent,
+    EmployeeDetailsComponent,
   ],
   imports: [
     BrowserModule,
