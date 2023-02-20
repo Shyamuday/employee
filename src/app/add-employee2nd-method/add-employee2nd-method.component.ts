@@ -20,7 +20,6 @@ export class AddEmployee2ndMethodComponent implements OnInit {
   addressHeader = false;
   stateList = StateData;
   employeeForm = this.fb.group({
-    // nonNullable: true,
     name: ['', Validators.required],
     mobile: [
       '',
@@ -76,8 +75,6 @@ export class AddEmployee2ndMethodComponent implements OnInit {
 
   onAddAddress() {
     this.addressForms.push(this.newAddress());
-
-    // console.log(this.addressForms)
   }
 
   addLine1(i: number) {
@@ -97,8 +94,6 @@ export class AddEmployee2ndMethodComponent implements OnInit {
   }
 
   saveEmployeeForm() {
-
-
     this.employeeService.postEmployeeDetails(this.employeeForm.getRawValue()).subscribe({
       next: (res) => {
         alert('Employee details added successfully');
@@ -123,7 +118,6 @@ export class AddEmployee2ndMethodComponent implements OnInit {
   getEmployeeIdToEdit() {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.empId = params.get('employeeId')
-      // console.log(this.empId);
     })
   }
 
@@ -132,7 +126,6 @@ export class AddEmployee2ndMethodComponent implements OnInit {
     this.empUpdateBtn = true;
     this.empAddBtn = false;
     this.employeeService.getEmployeeDetailsById(employeeId).subscribe((res) => {
-      // console.log(res);
       this.oneEmployeeData = res;
       this.editEmployeeData(this.oneEmployeeData);
     })
