@@ -1,6 +1,6 @@
 <mat-card class="matCardContainer">
-  <mat-card-header>Add employee details</mat-card-header>
-  <form [formGroup]="employeeForm" (ngSubmit)="saveEmployeeForm()">
+  <mat-card-header>{{employeeHeaderStatus}} employee details</mat-card-header>
+  <form [formGroup]="employeeForm">
     <mat-card-content class="parentForm">
       <div class="form1">
         <div class="parentFormContainer">
@@ -55,7 +55,6 @@
             <mat-card-header *ngIf="addressHeader">Address</mat-card-header>
             <ng-container *ngFor="let addressForm of addressForms.controls; let i = index">
               <div [formGroupName]="i">
-
                 <div>
                   <mat-card-content class="cardHeight">
                     <div class="childForm">
@@ -141,15 +140,15 @@
         </button>
       </div>
       <div class="empBtn">
-
-        <button type="submit" [disabled]="!employeeForm.valid" mat-raised-button color="primary">
+        <button type="submit" *ngIf="empAddBtn" mat-raised-button color="primary" [disabled]="!employeeForm.valid"
+          (click)="saveEmployeeForm()">
           Add employee
         </button>
+        <button type="submit" *ngIf="empUpdateBtn" mat-raised-button color="primary" (click)="updateEmployeeData()">
+          update employee
+        </button>
       </div>
-
-
     </div>
-
   </form>
 </mat-card>
 

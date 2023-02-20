@@ -9,15 +9,16 @@ import { EmployeesService } from '../services/employees.service';
   styleUrls: ['./employee-details.component.scss']
 })
 export class EmployeeDetailsComponent implements OnInit {
-  employee: Employee = {} as Employee;
-  employeeId: any
+  employee: Employee = {} as Employee
+  employeeId!: number
   constructor(private employeeService: EmployeesService, private activateRoute: ActivatedRoute) { }
   ngOnInit(): void {
-    this.activateRoute.paramMap.subscribe((params) => {
-      this.employeeId = params.get('employeeId');
+    this.activateRoute.params.subscribe((params) => {
+      this.employeeId = params['employeeId']
     })
     if (this.employeeId) {
       this.employeeService.getEmployeeDetailsById(this.employeeId).subscribe((employeesData) => {
+        console.log(employeesData)
         this.employee = employeesData;
       })
     }

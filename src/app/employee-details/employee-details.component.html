@@ -10,12 +10,12 @@
             <h3>Gender :- {{employee.gender}}</h3>
             <h1>Address Details</h1>
 
-            <ng-container *ngFor="let addressData of employee.addressArray">
-                <h3>Line1 :- {{addressData.addLine1}}</h3>
-                <h3>Line2 :- {{addressData.addLine2}}</h3>
-                <h3>District :- {{addressData.district}}</h3>
-                <h3>State :- {{addressData.state}}</h3>
-                <h3>PIN :- {{addressData.pinCode}}</h3>
+            <ng-container *ngFor="let address of employee.addressArray">
+                <h3>Line1 :- {{address?.addLine1}}</h3>
+                <h3>Line2 :- {{address?.addLine2}}</h3>
+                <h3>District :- {{address?.district}}</h3>
+                <h3>State :- {{address?.state}}</h3>
+                <h3>PIN :- {{address?.pinCode}}</h3>
             </ng-container>
             <h3></h3>
         </mat-card-content>

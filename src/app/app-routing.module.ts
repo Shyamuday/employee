@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'skillsForm', component: SkillsFormComponent },
 
   { path: 'displayEmployees', component: DisplayEmployeeComponent },
-  { path: 'employeeDetail/:employeeId', component: EmployeeDetailsComponent }
+  { path: 'employeeDetail/:employeeId', component: EmployeeDetailsComponent },
+  { path: 'employeeDetail/:employeeId/edit', component: AddEmployee2ndMethodComponent },
 ];
 
 @NgModule({

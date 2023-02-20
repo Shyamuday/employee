@@ -11,11 +11,10 @@ import { EmployeesService } from '../services/employees.service';
 
 })
 export class DisplayEmployeeComponent implements OnInit, AfterViewInit {
-
-  displayEmployeeData: MatTableDataSource<Employee[]> = new MatTableDataSource()
-  displayedColumns: string[] = ['name', 'mobile', 'email', 'gender', 'showmore'];
+  allEmpData: Employee[] = [];
+  displayEmployeeData: MatTableDataSource<Employee> = new MatTableDataSource()
+  displayedColumns: string[] = ['name', 'mobile', 'email', 'gender', 'show', 'action'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
   constructor(private employeeService: EmployeesService) { }
 
   ngOnInit(): void {
@@ -28,11 +27,18 @@ export class DisplayEmployeeComponent implements OnInit, AfterViewInit {
 
   getAllEmployeeData() {
     this.employeeService.getEmployeeDetails().subscribe({
-      next: (data) => {
-        this.displayEmployeeData.data = data
+      next: (data: Employee[]) => {
+        this.displayEmployeeData.data = data;
       }, error: (error) => {
         console.log(error);
       }
+    })
+  }
+
+  deleteEmployee(id: number) {
+    this.employeeService.deleteEmployee(id).subscribe((res) => {
+      alert("successfully deleted employee");
+      this.getAllEmployeeData();
     })
   }
 }

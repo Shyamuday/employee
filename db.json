@@ -2,16 +2,23 @@
   "employees": [
     {
       "name": "Pavan kumar",
-      "mobile": 8789654578,
+      "mobile": 8789654574,
       "gender": "male",
       "email": "pavan@tradexa.in",
       "addressArray": [
         {
           "addLine1": "Kharadi",
-          "addLine2": "Lane no 1",
+          "addLine2": "Pune",
           "district": "Pune",
           "state": "Maharashtra",
-          "pinCode": 897456
+          "pinCode": 874512
+        },
+        {
+          "addLine1": "Line 65",
+          "addLine2": "Sheri Khans",
+          "district": "shergal matha",
+          "state": "Chhattisgarh",
+          "pinCode": 457812
         }
       ],
       "id": 15
@@ -57,14 +64,6 @@
       "id": 18
     },
     {
-      "name": "",
-      "mobile": "",
-      "gender": "",
-      "email": "",
-      "addressArray": [],
-      "id": 19
-    },
-    {
       "name": "Mohan",
       "mobile": 8789546512,
       "gender": "male",
@@ -78,23 +77,7 @@
       "gender": "",
       "email": "",
       "addressArray": [],
-      "id": 21
-    },
-    {
-      "name": "",
-      "mobile": "",
-      "gender": "",
-      "email": "",
-      "addressArray": [],
       "id": 22
-    },
-    {
-      "name": "",
-      "mobile": "",
-      "gender": "",
-      "email": "",
-      "addressArray": [],
-      "id": 23
     },
     {
       "name": "",
@@ -159,6 +142,228 @@
       "email": "anupam89@gmail.com",
       "addressArray": [],
       "id": 31
+    },
+    {
+      "name": "shyam",
+      "email": "sg65@gmail.com",
+      "mobile": 930447122,
+      "gender": "male",
+      "id": 32
+    },
+    {
+      "name": "Mohan",
+      "email": "mohan24@gmail.com",
+      "mobile": 7845748596,
+      "gender": "male",
+      "addLine1": {
+        "addLine1": "Diwakar nagar, Balumath",
+        "addLine2": "Hari Tola",
+        "district": "Latehar",
+        "state": "Jharkhand",
+        "pinCode": 829202
+      },
+      "id": 33
+    },
+    {
+      "name": "Laxman",
+      "email": "laxman@gmail.com",
+      "mobile": 8271457841,
+      "gender": "male",
+      "addLine1": {
+        "addLine1": "Diwakar nagar, Balumath",
+        "addLine2": "ncjsd",
+        "district": "Raigarh",
+        "state": "Assam",
+        "pinCode": 829202
+      },
+      "id": 34
+    },
+    {
+      "name": "mnnm",
+      "email": "shyamkumar.jnv@gmail.com",
+      "mobile": 930447122,
+      "gender": "male",
+      "addLine1": {
+        "addLine1": "Diwakar nagar, Balumath",
+        "addLine2": "",
+        "district": "jnj",
+        "state": "Assam",
+        "pinCode": 829202
+      },
+      "addLine2": {
+        "addLine1": "jknj",
+        "addLine2": "",
+        "district": "kjk",
+        "state": "Chhattisgarh",
+        "pinCode": 544545
+      },
+      "id": 35
+    },
+    {
+      "name": "",
+      "email": "",
+      "mobile": "",
+      "gender": "",
+      "id": 36
+    },
+    {
+      "name": "",
+      "mobile": "",
+      "gender": "",
+      "email": "",
+      "addressArray": [
+        {
+          "addLine1": "",
+          "addLine2": "",
+          "district": "",
+          "state": "",
+          "pinCode": ""
+        }
+      ],
+      "id": 37
+    },
+    {
+      "name": "",
+      "mobile": "",
+      "gender": "",
+      "email": "",
+      "addressArray": [
+        {
+          "addLine1": "",
+          "addLine2": "",
+          "district": "",
+          "state": "",
+          "pinCode": ""
+        },
+        {
+          "addLine1": "",
+          "addLine2": "",
+          "district": "",
+          "state": "",
+          "pinCode": ""
+        }
+      ],
+      "id": 38
+    },
+    {
+      "name": "",
+      "mobile": "",
+      "gender": "",
+      "email": "",
+      "addressArray": [],
+      "id": 39
+    },
+    {
+      "addressArray": [],
+      "id": 40
+    },
+    {
+      "addressArray": [],
+      "id": 41
+    },
+    {
+      "name": "Pavan ku",
+      "mobile": 8789654578,
+      "gender": "male",
+      "email": "pavan@tradexa.in",
+      "addressArray": [],
+      "id": 42
+    },
+    {
+      "name": "Pavan kumar",
+      "mobile": 8789654577,
+      "gender": "male",
+      "email": "pavan@tradexa.in",
+      "addressArray": [],
+      "id": 43
+    },
+    {
+      "name": "Pavan kumar",
+      "mobile": 8789654577,
+      "gender": "male",
+      "email": "pavan@tradexa.in",
+      "addressArray": [],
+      "id": 44
+    },
+    {
+      "name": "",
+      "mobile": "",
+      "gender": "",
+      "email": "",
+      "addressArray": [],
+      "id": 45
+    },
+    {
+      "name": "",
+      "mobile": "",
+      "gender": "",
+      "email": "",
+      "addressArray": [],
+      "id": 46
+    },
+    {
+      "name": "Pavan kumar",
+      "mobile": 8789654575,
+      "gender": "male",
+      "email": "pavan@tradexa.in",
+      "addressArray": [],
+      "id": 47
+    },
+    {
+      "name": "",
+      "mobile": "",
+      "gender": "",
+      "email": "",
+      "addressArray": [
+        {
+          "addLine1": "",
+          "addLine2": "",
+          "district": "",
+          "state": "",
+          "pinCode": ""
+        }
+      ],
+      "id": 48
+    },
+    {
+      "name": " shyam",
+      "mobile": 9304471228,
+      "gender": "male",
+      "email": "mncbsd@jsdncs",
+      "addressArray": [
+        {
+          "addLine1": "Diwakar nagar, Balumath",
+          "addLine2": "",
+          "district": "hbcdhs",
+          "state": "Andhra Pradesh",
+          "pinCode": 829202
+        }
+      ],
+      "id": 49
+    },
+    {
+      "name": " shyam",
+      "mobile": 9304471228,
+      "gender": "male",
+      "email": "mncbsd@jsdncs",
+      "addressArray": [
+        {
+          "addLine1": "Diwakar nagar, Balumath",
+          "addLine2": "",
+          "district": "hbcdhs",
+          "state": "Andhra Pradesh",
+          "pinCode": 829202
+        }
+      ],
+      "id": 50
+    },
+    {
+      "name": "Pavan kumar",
+      "mobile": 8789654574,
+      "gender": "male",
+      "email": "pavan@tradexa.in",
+      "addressArray": [],
+      "id": 51
     }
   ],
   "posts": [
