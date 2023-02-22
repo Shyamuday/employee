@@ -18,15 +18,15 @@ export class EmployeesService {
     return this._http.get<Employee[]>(`${this.url}/employees`);
   }
 
-  getEmployeeDetailsById(employeeId: number): Observable<Employee> {
+  getEmployeeDetailsById(employeeId: string): Observable<Employee> {
     return this._http.get<Employee>(`${this.url}/employees/${employeeId}`)
   }
 
-  updateEmployee(data: Employee, employeeId: number): Observable<Employee[]> {
+  updateEmployee(data: Employee, employeeId: string | null): Observable<Employee[]> {
     return this._http.patch<Employee[]>(`${this.url}/employees/${employeeId}`, data)
   }
 
-  deleteEmployee(employeeId: number): Observable<Employee[]> {
+  deleteEmployee(employeeId: string): Observable<Employee[]> {
     return this._http.delete<Employee[]>(`${this.url}/employees/${employeeId}`)
   }
 }

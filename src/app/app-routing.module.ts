@@ -9,19 +9,19 @@ import { HomeComponent } from './home/home.component';
 import { SkillsFormComponent } from './skills-form/skills-form.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'addEmployee2ndMethod', pathMatch: 'full' },
+  { path: '', redirectTo: 'add-employee-method', pathMatch: 'full' },
 
-  { path: 'addEmployee', component: AddEmployeeComponent },
+  { path: 'add-employee', component: AddEmployeeComponent },
   {
-    path: 'addEmployee2ndMethod',
+    path: 'add-employee-method',
     component: AddEmployee2ndMethodComponent,
   },
-  { path: 'formArray', component: FormArrayComponent },
-  { path: 'skillsForm', component: SkillsFormComponent },
+  { path: 'form-array', component: FormArrayComponent },
+  { path: 'skills-form', component: SkillsFormComponent },
 
-  { path: 'displayEmployees', component: DisplayEmployeeComponent },
-  { path: 'employeeDetail/:employeeId', component: EmployeeDetailsComponent },
-  { path: 'employeeDetail/:employeeId/edit', component: AddEmployee2ndMethodComponent },
+  { path: 'display-employees', component: DisplayEmployeeComponent },
+  { path: 'employee-detail/:employeeId', component: EmployeeDetailsComponent },
+  { path: 'employee-detail/:employeeId/edit', component: AddEmployee2ndMethodComponent },
 ];
 
 @NgModule({

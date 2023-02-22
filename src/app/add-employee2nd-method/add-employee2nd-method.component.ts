@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AddressArray, Employee } from '../employee.model';
+import { AddressArray, Employee, EmployeeHeaderStatus } from '../employee.model';
 import { EmployeesService } from '../services/employees.service';
 import { StateData } from './State-list';
 
@@ -11,14 +11,16 @@ import { StateData } from './State-list';
   styleUrls: ['./add-employee2nd-method.component.scss'],
 })
 export class AddEmployee2ndMethodComponent implements OnInit {
-  empId: any;
-  employeeHeaderStatus = "Add" || "Edit";
-  empAddBtn = true;
-  empUpdateBtn = false;
-  sendEmployeeDAta: Employee = {} as Employee;
-  oneEmployeeData: Employee = {} as Employee;
+
+  employeeId: string | null = null;;
+  employeeHeaderStatus: EmployeeHeaderStatus = EmployeeHeaderStatus.Add
+  employeeAddButton = true;
+  employeeUpdateButton = false;
+  Employee: Employee = {} as Employee;
+  singleEmployee: Employee = {} as Employee;
   addressHeader = false;
   stateList = StateData;
+
   employeeForm = this.fb.group({
     name: ['', Validators.required],
     mobile: [
@@ -42,114 +44,88 @@ export class AddEmployee2ndMethodComponent implements OnInit {
   ) {
   }
   ngOnInit(): void {
-    this.getEmployeeIdToEdit()
-    if (this.empId) {
-      this.getEmployeeData(this.empId);
+    this.employeeId = this.activatedRoute.snapshot.params['employeeId'];
+    if (this.employeeId) {
+      this.getEmployeeData(this.employeeId);
     }
-  }
-  get name() {
-    return this.employeeForm.get('name');
-  }
-  get mobile() {
-    return this.employeeForm.get('mobile');
-  }
-  get email() {
-    return this.employeeForm.get('email');
-  }
-  get gender() {
-    return this.employeeForm.get('gender');
   }
   get addressForms() {
     return this.employeeForm.get('addressArray') as FormArray;
   }
-
-  newAddress(address?: AddressArray | null) {
+  newAddress() {
     return this.fb.group({
-      addLine1: [address?.addLine1, Validators.required],
-      addLine2: [address?.addLine2],
-      district: [address?.district, Validators.required],
-      state: [address?.state, Validators.required],
-      pinCode: [address?.pinCode, Validators.required],
+      addLine1: ['', Validators.required],
+      addLine2: [''],
+      district: ['', Validators.required],
+      state: ['', Validators.required],
+      pinCode: ['', Validators.required],
     });
   }
-
-  onAddAddress() {
+  addAddress() {
     this.addressForms.push(this.newAddress());
   }
-
-  addLine1(i: number) {
-    return this.addressForms.at(i).get('addLine1');
+  get patchAddress() {
+    return this.employeeForm.get('addressArray') as FormArray;
   }
-  addLine2(i: number) {
-    return this.addressForms.at(i).get('addLine2');
-  }
-  district(i: number) {
-    return this.addressForms.at(i).get('district');
-  }
-  state(i: number) {
-    return this.addressForms.at(i).get('state');
-  }
-  pinCode(i: number) {
-    return this.addressForms.at(i).get('pinCode');
-  }
-
   saveEmployeeForm() {
     this.employeeService.postEmployeeDetails(this.employeeForm.getRawValue()).subscribe({
-      next: (res) => {
+      next: (result) => {
+
+        console.log(this.employeeForm);
+
         alert('Employee details added successfully');
         this.employeeForm.reset();
-        this.router.navigate(['/', 'displayEmployees']);
+        this.router.navigate(['/', 'display-employees']);
       },
-      error: (err) => {
-        console.log(err);
+      error: (error) => {
+        console.log(error);
       },
     });
   }
-
   removeAddressFormGroup(i: number) {
     this.addressForms.removeAt(i);
   }
-
   // isStateDisabled(option: string) {
   //   console.count(option)
   //   return this.addressForms.value.find((v: any) => v.state === option)
   // };
+  getEmployeeData(employeeId: string) {
+    this.employeeHeaderStatus = EmployeeHeaderStatus.Edit
+    this.employeeUpdateButton = true;
+    this.employeeAddButton = false;
+    this.employeeService.getEmployeeDetailsById(employeeId).subscribe((result) => {
+      this.singleEmployee = result;
 
-  getEmployeeIdToEdit() {
-    this.activatedRoute.paramMap.subscribe((params) => {
-      this.empId = params.get('employeeId')
+
+      this.editEmployeeData()
     })
   }
-
-  getEmployeeData(employeeId: number) {
-    this.employeeHeaderStatus = "Edit";
-    this.empUpdateBtn = true;
-    this.empAddBtn = false;
-    this.employeeService.getEmployeeDetailsById(employeeId).subscribe((res) => {
-      this.oneEmployeeData = res;
-      this.editEmployeeData(this.oneEmployeeData);
-    })
+  editEmployeeData() {
+    const { addressArray, email, gender, mobile, name } = this.singleEmployee;
+    this.addressForms.clear();
+    if (addressArray !== null) {
+      for (let i = 0; i < addressArray.length; i++) {
+        const { addLine1, addLine2, district, state, pinCode } = addressArray[i] as AddressArray
+        this.addressForms.push(this.generateFormGroup(addLine1, addLine2, district, state, pinCode))
+      }
+    }
+    this.employeeForm.patchValue({ email, gender, mobile, name, addressArray })
   }
-  editEmployeeData(oneEmployeeData: Employee) {
-    console.log(oneEmployeeData)
-    this.employeeForm.patchValue({
-      name: oneEmployeeData.name,
-      email: oneEmployeeData.email,
-      mobile: oneEmployeeData.mobile,
-      gender: oneEmployeeData.gender,
-    })
-    oneEmployeeData.addressArray.forEach(address => {
-      this.addressForms.push(this.newAddress(address));
-    })
+  generateFormGroup(addLine1: string | null, addLine2: string | null, district: string | null, state: string | null,
+    pinCode: string | null) {
+    return this.fb.group({
+      addLine1: addLine1,
+      addLine2: addLine2,
+      district: district,
+      state: state,
+      pinCode: pinCode,
+    });
   }
-
   updateEmployeeData() {
     const oneEmp = this.employeeForm.getRawValue()
-    this.employeeService.updateEmployee(oneEmp, this.empId).subscribe((res) => {
+    this.employeeService.updateEmployee(oneEmp, this.employeeId).subscribe((result) => {
       alert("employee updated successfully")
-      this.router.navigate(['/', 'displayEmployees'])
+      this.router.navigate(['/', 'display-employees'])
     })
   }
 }
-
-

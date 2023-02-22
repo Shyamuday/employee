@@ -35,8 +35,8 @@ export class DisplayEmployeeComponent implements OnInit, AfterViewInit {
     })
   }
 
-  deleteEmployee(id: number) {
-    this.employeeService.deleteEmployee(id).subscribe((res) => {
+  deleteEmployee(id: string) {
+    this.employeeService.deleteEmployee(id).subscribe((result) => {
       alert("successfully deleted employee");
       this.getAllEmployeeData();
     })

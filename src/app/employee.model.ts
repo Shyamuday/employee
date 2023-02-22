@@ -1,6 +1,6 @@
 export interface Employee {
   [x: string]: any
-  id?: number
+  id?: string
   name: string | null
   mobile: string | null
   gender: string | null
@@ -15,4 +15,9 @@ export interface AddressArray {
   district: string | null
   state: string | null
   pinCode: string | null
+}
+
+export enum EmployeeHeaderStatus {
+  Add = "Add",
+  Edit = "Edit"
 }

@@ -8,9 +8,10 @@
             <mat-label>Name</mat-label>
             <input matInput placeholder="Enter Employee Name" formControlName="name" />
           </mat-form-field>
-          <div *ngIf="name?.invalid && (name?.touched || name?.dirty)">
-            <mat-error *ngIf="name?.errors?.['required']">Name is required field</mat-error>
-            <mat-error *ngIf="name?.errors?.['minLength']"></mat-error>
+          <div
+            *ngIf="employeeForm.controls.name?.invalid && (employeeForm.controls.name?.touched || employeeForm.controls.name?.dirty)">
+            <mat-error *ngIf="employeeForm.controls.name?.errors?.['required']">Name is required field</mat-error>
+            <mat-error *ngIf="employeeForm.controls.name?.errors?.['minLength']"></mat-error>
           </div>
         </div>
         <div class="parentFormContainer">
@@ -19,10 +20,12 @@
             <input type="number" matInput placeholder="Enter Mobile no" formControlName="mobile" />
             <mat-icon matSuffix>phone</mat-icon>
           </mat-form-field>
-          <div *ngIf="mobile?.invalid && (mobile?.touched || mobile?.dirty)">
-            <mat-error *ngIf="mobile?.errors?.['required']">Mobile no is required Field</mat-error>
-            <mat-error *ngIf="mobile?.errors?.['minLength']">Please enter 10 Digit </mat-error>
-            <mat-error *ngIf="mobile?.errors?.['maxLength']">Enter Only 10 digit</mat-error>
+          <div
+            *ngIf="employeeForm.controls.mobile?.invalid && (employeeForm.controls.mobile?.touched || employeeForm.controls.mobile?.dirty)">
+            <mat-error *ngIf="employeeForm.controls.mobile?.errors?.['required']">Mobile no is required
+              Field</mat-error>
+            <mat-error *ngIf="employeeForm.controls.mobile?.errors?.['minLength']">Please enter 10 Digit </mat-error>
+            <mat-error *ngIf="employeeForm.controls.mobile?.errors?.['maxLength']">Enter Only 10 digit</mat-error>
           </div>
         </div>
         <div class="parentFormContainer">
@@ -30,9 +33,10 @@
             <mat-label>Employee Email</mat-label>
             <input matInput placeholder="Enter Employee EmailId" formControlName="email" />
           </mat-form-field>
-          <div *ngIf="email?.invalid && (email?.touched || email?.dirty)">
-            <mat-error *ngIf="email?.errors?.['required']">Email is required field</mat-error>
-            <mat-error *ngIf="email?.errors?.['email']">Enter valid email</mat-error>
+          <div
+            *ngIf="employeeForm.controls.email?.invalid && (employeeForm.controls.email?.touched || employeeForm.controls.email?.dirty)">
+            <mat-error *ngIf="employeeForm.controls.email?.errors?.['required']">Email is required field</mat-error>
+            <mat-error *ngIf="employeeForm.controls.email?.errors?.['email']">Enter valid email</mat-error>
           </div>
         </div>
         <div class="parentFormContainer">
@@ -44,8 +48,9 @@
               <mat-option value="other">Other</mat-option>
             </mat-select>
           </mat-form-field>
-          <div *ngIf="gender?.invalid && (gender?.touched || gender?.dirty)">
-            <mat-error *ngIf="gender?.errors?.['required']">Please select gender </mat-error>
+          <div
+            *ngIf="employeeForm.controls.gender?.invalid && (employeeForm.controls.gender?.touched || employeeForm.controls.gender?.dirty)">
+            <mat-error *ngIf="employeeForm.controls.gender?.errors?.['required']">Please select gender </mat-error>
           </div>
         </div>
       </div>
@@ -67,8 +72,11 @@
                           <input matInput placeholder="Enter Employee Address" [id]="'empAddLine1' + i"
                             formControlName="addLine1" />
                         </mat-form-field>
-                        <div *ngIf="addLine1(i)?.invalid && (addLine1(i)?.touched || addLine1(i)?.dirty)">
-                          <mat-error *ngIf="addLine1(i)?.errors?.['required']">'Address field is required
+
+                        <div
+                          *ngIf=" addressForm.get('addLine1')?.invalid && (addressForm.get('addLine1')?.touched || addressForm.get('addLine1')?.dirty)">
+                          <mat-error *ngIf="addressForm.get('addLine1')?.errors?.['required']">'Address field is
+                            required
                             field</mat-error>
                         </div>
                       </div>
@@ -85,10 +93,14 @@
                           <input matInput placeholder="Enter Employee District" formControlName="district"
                             [id]="'empDist' + i" />
                         </mat-form-field>
-                        <div *ngIf="district(i)?.invalid && (district(i)?.touched || district(i)?.dirty)">
-                          <mat-error *ngIf="district(i)?.errors?.['required']">'District is required
-                            field.</mat-error>
+
+                        <div
+                          *ngIf=" addressForm.get('district')?.invalid && (addressForm.get('district')?.touched || addressForm.get('district')?.dirty)">
+                          <mat-error *ngIf="addressForm.get('district')?.errors?.['required']">'Address field is
+                            required
+                            field</mat-error>
                         </div>
+
                       </div>
                       <div class="childFormContainer">
                         <mat-form-field appearance="outline">
@@ -100,8 +112,9 @@
                             </mat-select>
                           </ng-container>
                         </mat-form-field>
-                        <div *ngIf="state(i)?.invalid && (state(i)?.touched|| state(i)?.dirty)">
-                          <mat-error *ngIf="state(i)?.errors?.['required']">
+                        <div
+                          *ngIf="addressForm.get('state')?.invalid && (addressForm.get('state')?.touched|| addressForm.get('state')?.dirty)">
+                          <mat-error *ngIf="addressForm.get('state')?.errors?.['required']">
                             State is required
                           </mat-error>
                         </div>
@@ -112,8 +125,9 @@
                           <input type="number" matInput placeholder="Enter Area PIN Code" formControlName="pinCode"
                             [id]="'empPin' + i" />
                         </mat-form-field>
-                        <div *ngIf="pinCode(i)?.invalid && (pinCode(i)?.touched || pinCode(i)?.dirty)">
-                          <mat-error *ngIf="pinCode(i)?.errors?.['required']">
+                        <div
+                          *ngIf="addressForm.get('pinCode')?.invalid && (addressForm.get('pinCode')?.touched || addressForm.get('pinCode')?.dirty)">
+                          <mat-error *ngIf="addressForm.get('pinCode')?.errors?.['required']">
                             PIN Code is required field
                           </mat-error>
                         </div>
@@ -135,21 +149,21 @@
     </mat-card-content>
     <div class="btnContainer">
       <div>
-        <button type="button" mat-button color="primary" (click)=" onAddAddress()">
+        <button type="button" mat-button color="primary" (click)=" addAddress()">
           Add Address
         </button>
       </div>
       <div class="empBtn">
-        <button type="submit" *ngIf="empAddBtn" mat-raised-button color="primary" [disabled]="!employeeForm.valid"
-          (click)="saveEmployeeForm()">
+        <button type="submit" *ngIf="employeeAddButton" mat-raised-button color="primary" (click)="saveEmployeeForm()">
           Add employee
         </button>
-        <button type="submit" *ngIf="empUpdateBtn" mat-raised-button color="primary" (click)="updateEmployeeData()">
+        <button type="submit" *ngIf="employeeUpdateButton" mat-raised-button color="primary"
+          (click)="updateEmployeeData()">
           update employee
         </button>
       </div>
     </div>
   </form>
 </mat-card>
-
+<!-- [disabled]="!employeeForm.valid" -->
 <!-- [disabled]="isStateDisabled(option)" -->

@@ -23,7 +23,7 @@
 
         <ng-container matColumnDef="show">
             <th mat-header-cell *matHeaderCellDef>Details</th>
-            <td mat-cell *matCellDef="let element" routerLink="/employeeDetail/{{element.id}}">
+            <td mat-cell *matCellDef="let element" routerLink="/employee-detail/{{element.id}}">
                 <mat-icon>arrow_forward</mat-icon>
             </td>
         </ng-container>
@@ -31,7 +31,7 @@
             <th mat-header-cell *matHeaderCellDef>Action</th>
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button class="example-icon favorite-icon"
-                    routerLink="/employeeDetail/{{element.id}}/edit">
+                    routerLink="/employee-detail/{{element.id}}/edit">
                     <mat-icon color="primary">edit</mat-icon>
                 </button>
 
